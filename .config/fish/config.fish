@@ -2,7 +2,7 @@
 # set fish_color_normal F8F8F2 # the default color
 set fish_color_normal normal
 # set fish_color_command FFFFFF # the color for commands
-set fish_color_command --bold
+set fish_color_command normal --bold
 # set fish_color_quote E6DB74 # the color for quoted blocks of text
 set fish_color_quote yellow
 # set fish_color_redirection AE81FF # the color for IO redirections
