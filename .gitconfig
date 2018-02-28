@@ -1,0 +1,20 @@
+[user]
+	name = DM-LyleCheatham
+	email = lylecheatham@desktopmetal.com
+[core]
+	excludesfile = /Users/lyle/.gitignore_global
+	editor = /usr/bin/vim
+	excudesfile = `~/.gitignore_global`
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = git  mergetool
+	trustExitCode = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[commit]
+	template = /Users/lyle/.stCommitMsg
