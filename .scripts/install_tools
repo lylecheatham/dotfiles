@@ -1,0 +1,5 @@
+brew install fish
+brew install neovim
+brew install tmux
+gem install tmuxinator
+brew install tig
