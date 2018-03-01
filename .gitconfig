@@ -17,4 +17,4 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 [commit]
-	template = /Users/lyle/.stCommitMsg
+    #template = /Users/lyle/.stCommitMsg
