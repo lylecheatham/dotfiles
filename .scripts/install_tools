@@ -1,8 +1,12 @@
+#!/bin/bash
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedFiles no
 brew install fish
 brew install neovim
 brew install tmux
-gem install tmuxinator
 brew install tig
 brew install python3
+brew install reattach-to-user-namespace
+brew install vifm
 pip3 install neovim-remote
+gem install tmuxinator
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
