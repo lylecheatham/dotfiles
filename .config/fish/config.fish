@@ -1,8 +1,8 @@
 # Colors:
 # set fish_color_normal F8F8F2 # the default color
-set fish_color_normal normal
+set fish_color_normal white
 # set fish_color_command FFFFFF # the color for commands
-set fish_color_command normal --bold
+set fish_color_command white --bold
 # set fish_color_quote E6DB74 # the color for quoted blocks of text
 set fish_color_quote yellow
 # set fish_color_redirection AE81FF # the color for IO redirections
@@ -18,7 +18,7 @@ set fish_color_comment 75715E
 # set fish_color_match F8F8F2 # the color used to highlight matching parenthesis
 set fish_color_match normal
 # set fish_color_search_match --background=49483E # the color used to highlight history search matches
-set fish_color_search_match 49483E
+set fish_color_search_match --background=49483E
 # set fish_color_operator AE81FF # the color for parameter expansion operators like '*' and '~'
 set fish_color_operator brmagenta
 # set fish_color_escape 66D9EF # the color used to highlight character escapes like '\n' and '\x70'
@@ -52,11 +52,11 @@ alias ejsd='diskutil unmount'
 alias lat='ls -lahtr'
 alias matlab='/Applications/MATLAB_R2017a.app/bin/matlab -nodisplay'
 function v
-    nvr --servername /tmp/nvr_(tmux display-message -p '#W'| md5 | cut -c1-7) --remote $argv
+    nvr -s --servername /tmp/nvr_(tmux display-message -p '#W'| md5 | cut -c1-7) --remote $argv
 end
 
 function vs
-    nvr --servername /tmp/nvr_(tmux display-message -p '#W' | md5 | cut -c1-7)
+    nvr -s --servername /tmp/nvr_(tmux display-message -p '#W' | md5 | cut -c1-7)
 end
 
 function vc
