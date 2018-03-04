@@ -4,4 +4,6 @@ alias lat='ls -lahtr'
 alias ejsd='diskutil unmount'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 export EDITOR='vim'
-fish
+export PATH="$HOME/.cargo/bin:$PATH"
+exec fish
+

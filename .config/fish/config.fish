@@ -45,18 +45,35 @@ end
 set SHELL /usr/local/bin/fish
 set EDITOR /usr/local/bin/vim
 
-
+status --is-interactive; and . (pyenv init -|psub)
+status --is-interactive; and . (pyenv virtualenv-init -|psub)
 
 alias serial='pio device monitor -b 115200 --echo'
 alias ejsd='diskutil unmount'
 alias lat='ls -lahtr'
 alias matlab='/Applications/MATLAB_R2017a.app/bin/matlab -nodisplay'
+
 function v
-    nvr -s --servername /tmp/nvr_(tmux display-message -p '#W'| md5 | cut -c1-7) --remote $argv
+    nvr -s --servername /tmp/nvr_(tmux display-message -p '#I') --remote $argv
 end
 
 function vs
-    nvr -s --servername /tmp/nvr_(tmux display-message -p '#W' | md5 | cut -c1-7)
+    rm /tmp/nvr_(tmux display-message -p '#I')
+    nvr -s --servername /tmp/nvr_(tmux display-message -p '#I')
+end
+
+function vsr
+    tmux respawnp -t 0:2.0
+end
+
+function win
+    if count $argv > /dev/null
+        set -l relpath (greadlink -f $argv)
+        echo $relpath
+        tmux new-window -n (basename $relpath) -c $relpath vs \; set-window-option remain-on-exit on \; split-window -c $relpath
+    else
+        tmux new-window -n (adjspecies) vs \; set-window-option remain-on-exit on \; split-window
+    end
 end
 
 function vc
