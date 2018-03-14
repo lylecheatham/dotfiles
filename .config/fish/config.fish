@@ -38,7 +38,7 @@ set fish_pager_color_secondary F8F8F2 # the background color of the every second
 
 function fish_prompt
     set_color $fish_color_cwd
-    printf (pwd)
+    printf $PWD
     printf '>'
 end
 
@@ -54,12 +54,20 @@ alias lat='ls -lahtr'
 alias matlab='/Applications/MATLAB_R2017a.app/bin/matlab -nodisplay'
 
 function v
-    nvr -s --servername /tmp/nvr_(tmux display-message -p '#I') --remote $argv
+    if set -q TMUX
+        nvr -s --servername /tmp/nvr_(tmux display-message -p '#I') --remote $argv
+    else
+        nvr -s --remote $argv
+    end
 end
 
 function vs
-    rm /tmp/nvr_(tmux display-message -p '#I')
-    nvr -s --servername /tmp/nvr_(tmux display-message -p '#I')
+    if set -q TMUX
+        rm /tmp/nvr_(tmux display-message -p '#I')
+        nvr -s --servername /tmp/nvr_(tmux display-message -p '#I')
+    else
+        nvr -s
+    end
 end
 
 function vsr

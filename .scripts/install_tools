@@ -8,6 +8,7 @@ brew install python3
 brew install reattach-to-user-namespace
 brew install vifm
 brew install coreutils
+brew install bro
 pip3 install neovim-remote
 gem install tmuxinator
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
