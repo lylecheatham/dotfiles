@@ -16,6 +16,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'rust-lang/rust.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'rhysd/vim-clang-format'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -98,3 +99,8 @@ let g:tmux_navigator_no_mappings = 1
 " Use :wqa and :qa to exit vim!
 :cnoreabbrev wq w<bar>bd
 :cnoreabbrev q bd
+
+" Delete the first [No Name] buffer on a new instance
+" if bufname('%') == '[No Name]'
+"   set bufhidden=delete
+" endif

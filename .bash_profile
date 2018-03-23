@@ -4,6 +4,7 @@ alias lat='ls -lahtr'
 alias ejsd='diskutil unmount'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 export EDITOR='nvim'
+export PYENV_ROOT='$HOME/.pyenv'
 export PATH="$HOME/.cargo/bin:$PATH"
 exec fish
 
