@@ -395,10 +395,10 @@ statusbar = {
   };
 };
 settings = {
-  core = { 
+  core = {
     real_name = "Lyle Cheatham";
     user_name = "Lyle";
-    nick = "Lyle";
+    nick = "Lylec";
   };
   "fe-text" = { actlist_sort = "refnum"; };
 };

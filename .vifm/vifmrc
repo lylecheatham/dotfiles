@@ -17,7 +17,7 @@ windo normal zo
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
-set vicmd="nvr --servername /tmp/nvr_(tmux display-message -p '#W' | md5 | cut -c1-7)"
+set vicmd="nvr --servername /tmp/nvr_(tmux display-message -p '#I')"
 " set vicmd=elvis\ -G\ termcap
 " set vicmd=vile
 
