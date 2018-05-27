@@ -9,6 +9,8 @@ brew install reattach-to-user-namespace
 brew install vifm
 brew install coreutils
 brew install bro
+brew install pyenv
+brew install pyenv-virtualenv
 pip3 install neovim-remote
 gem install tmuxinator
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim

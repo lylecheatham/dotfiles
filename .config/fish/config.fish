@@ -44,8 +44,10 @@ end
 
 set SHELL /usr/local/bin/fish
 set EDITOR /usr/local/bin/vim
+set PYENV_ROOT /Users/lyle/.pyenv
 
-status --is-interactive; and . (pyenv init -|psub)
+
+status --is-interactive; and source (pyenv init -|psub)
 status --is-interactive; and . (pyenv virtualenv-init -|psub)
 
 alias serial='pio device monitor -b 115200 --echo'

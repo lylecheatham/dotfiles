@@ -3,11 +3,11 @@
 	email = lylecheatham@desktopmetal.com
 [core]
 	excludesfile = /Users/lyle/.gitignore_global
-	editor = /usr/bin/vim
+    editor = /usr/local/bin/nvim
 	excudesfile = `~/.gitignore_global`
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 [mergetool "sourcetree"]
 	cmd = git  mergetool
 	trustExitCode = true
