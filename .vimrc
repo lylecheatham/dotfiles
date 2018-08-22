@@ -17,6 +17,9 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'dhruvasagar/vim-table-mode'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -79,32 +82,28 @@ set statusline+=%-40F
 set statusline+=%-10y
 set statusline+=%=%5l/%-5L
 
-" Map ctrl [hjkl] to move between splits
-"nnoremap <c-j> <c-w>j
-"nnoremap <c-k> <c-w>k
-"nnoremap <c-h> <c-w>h
-"nnoremap <c-l> <c-w>l
-
 " don't use any of the tmux navigator mappings
 let g:tmux_navigator_no_mappings = 1
 
+" Pass split movement keys to tmux_navigator
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
-" Pass split movement keys to tmux_navigator
-" nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-" nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-" nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-" nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-" nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
-
 " Make :wq and :q do buffer deletes instead of quit
 " Use :wqa and :qa to exit vim!
 :cnoreabbrev wq w<bar>bd
 :cnoreabbrev q bd
+
+" Make vim-table-mode make pandoc compatible tables
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
+
+" Persistent undo
+set undofile
+set undodir=~/.vim/undodir
 
 " Delete the first [No Name] buffer on a new instance
 " if bufname('%') == '[No Name]'
