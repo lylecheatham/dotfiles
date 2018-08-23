@@ -43,7 +43,7 @@ function fish_prompt
 end
 
 set SHELL /usr/local/bin/fish
-set EDITOR /usr/local/bin/vim
+set EDITOR /usr/local/bin/nvim
 set PYENV_ROOT /Users/lyle/.pyenv
 
 
@@ -54,6 +54,7 @@ alias serial='pio device monitor -b 115200 --echo'
 alias ejsd='diskutil unmount'
 alias lat='ls -lahtr'
 alias matlab='/Applications/MATLAB_R2017a.app/bin/matlab -nodisplay'
+alias gitlogin='ssh-add -K ~/.ssh/id_rsa_personal'
 
 function v
     if set -q TMUX
@@ -106,4 +107,11 @@ function config
     git --git-dir=$HOME/.cfg/ --work-tree=$HOME $argv
 end
 
+function pdf
+    pandoc $argv -o (dirname $argv[1])/(basename $argv[1] .md).pdf; and open (dirname $argv[1])/(basename $argv[1] .md).pdf;
+end
+
+function cpscreen
+    cp ~/Screenshots/(ls -tp ~/Screenshots | grep -v \/\$ | head -1) .;
+end
 
