@@ -44,7 +44,7 @@ end
 
 set SHELL /usr/local/bin/fish
 set EDITOR /usr/local/bin/nvim
-set PYENV_ROOT /Users/lyle/.pyenv
+set PYENV_ROOT $HOME/.pyenv
 
 
 status --is-interactive; and source (pyenv init -|psub)
@@ -54,11 +54,11 @@ alias serial='pio device monitor -b 115200 --echo'
 alias ejsd='diskutil unmount'
 alias lat='ls -lahtr'
 alias matlab='/Applications/MATLAB_R2017a.app/bin/matlab -nodisplay'
-alias gitlogin='ssh-add -K ~/.ssh/id_rsa_personal'
+alias gitlogin='ssh-add -K ~/.ssh/id_rsa'
 
 function v
     if set -q TMUX
-        nvr -s --servername /tmp/nvr_(tmux display-message -p '#I') --remote $argv
+        nvr -s --servername /tmp/nvr_"$USER"_(tmux display-message -p '#I') --remote $argv
     else
         nvr -s --remote $argv
     end
@@ -66,8 +66,8 @@ end
 
 function vs
     if set -q TMUX
-        rm /tmp/nvr_(tmux display-message -p '#I')
-        nvr -s --servername /tmp/nvr_(tmux display-message -p '#I')
+        rm /tmp/nvr_"$USER"_(tmux display-message -p '#I')
+        nvr -s --servername /tmp/nvr_"$USER"_(tmux display-message -p '#I')
     else
         nvr -s
     end
@@ -88,7 +88,7 @@ function win
 end
 
 function vc
-    rm /tmp/nvr_(tmux display-message -p '#W' | md5 | cut -c1-7)
+    rm /tmp/nvr_$USER_(tmux display-message -p '#I')
 end
 
 function glob
