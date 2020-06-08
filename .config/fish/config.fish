@@ -50,11 +50,15 @@ set PYENV_ROOT $HOME/.pyenv
 status --is-interactive; and source (pyenv init -|psub)
 status --is-interactive; and . (pyenv virtualenv-init -|psub)
 
-alias serial='pio device monitor -b 115200 --echo'
+alias serial='pio device monitor -b 115200 --echo --eol LF'
+alias pserial='pio device monitor -b 115200 --eol LF'
 alias ejsd='diskutil unmount'
 alias lat='ls -lahtr'
 alias matlab='/Applications/MATLAB_R2017a.app/bin/matlab -nodisplay'
-alias gitlogin='ssh-add -K ~/.ssh/id_rsa'
+alias matlab2020='/Applications/MATLAB_R2020a.app/bin/matlab -nodesktop'
+alias gitlogin='ssh-add -K ~/.ssh/id_rsa_personal'
+alias usb_work="sudo killall -STOP -c usbd"
+alias usb_resume="sudo killall -CONT usbd"
 
 function v
     if set -q TMUX
@@ -111,7 +115,12 @@ function pdf
     pandoc $argv -o (dirname $argv[1])/(basename $argv[1] .md).pdf; and open (dirname $argv[1])/(basename $argv[1] .md).pdf;
 end
 
+function pdfw
+    pandoc -Vmargin-left=0.75in -Vmargin-right=0.75in -Vmargin-top=1in -Vmargin-bottom=1in $argv -o (dirname $argv[1])/(basename $argv[1] .md).pdf; and open (dirname $argv[1])/(basename $argv[1] .md).pdf;
+end
+
 function cpscreen
     cp ~/Screenshots/(ls -tp ~/Screenshots | grep -v \/\$ | head -1) .;
 end
 
+rvm default
