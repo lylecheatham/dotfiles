@@ -44,7 +44,7 @@ root: ~/
 
 windows:
   - sys:
-      layout: horizontal
+      layout: main-horizontal
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
@@ -52,7 +52,13 @@ windows:
         - vs
         -
   - status:
-      layout: horizontal
+      layout: main-horizontal
       panes:
         - htop
         -
+  - Music:
+      layout: main-horizontal
+      panes:
+        - vs
+        - "cd Music && /Applications/SMLoadr-macos-x64"
+        - cd Music

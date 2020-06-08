@@ -1,6 +1,6 @@
 [user]
-	name = DM-LyleCheatham
-	email = lylecheatham@desktopmetal.com
+	name = LyleCheatham
+	email = hello@lylecheatham.com
 [core]
 	excludesfile = /Users/lyle/.gitignore_global
     editor = /usr/local/bin/nvim
@@ -9,7 +9,7 @@
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = git  mergetool
+	cmd = /Users/Lyle/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [filter "lfs"]
 	process = git-lfs filter-process
@@ -18,3 +18,5 @@
 	smudge = git-lfs smudge -- %f
 [commit]
     #template = /Users/lyle/.stCommitMsg
+[credential]
+	helper = osxkeychain

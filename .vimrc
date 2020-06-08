@@ -1,38 +1,11 @@
+" This is vim not vi
 set nocompatible              " be iMproved, required
-filetype off                  " required
+
+" Actually backspace in insert mode
 set backspace=2
 
-set rtp+=~/.vim/bundle/vundle.vim
-set shell=/bin/bash
-call vundle#begin()
-Plugin 'VundleVim/vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'kana/vim-fakeclip'
-Plugin 'pboettch/vim-cmake-syntax'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'rust-lang/rust.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'dhruvasagar/vim-table-mode'
-call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 " Enable line numbers
 set number
@@ -109,3 +82,47 @@ set undodir=~/.vim/undodir
 " if bufname('%') == '[No Name]'
 "   set bufhidden=delete
 " endif
+
+" Goyo
+
+let g:goyo_width = 84 " Leave a few extra chars more than textwidth
+
+function! s:goyo_enter()   " On goyo enter:
+  set noshowcmd            " Don't show last command
+  set noshowmode           " Don't show current mode
+  set scrolloff=999        " Centre current line
+  if has('gui_running')
+    set fullscreen         " Enter fullscreen (don't use Mac native fullscreen for this)
+    colo seoul8_light      " Light colours
+    set linespace=7        " Extra leading is better for prose
+  elseif exists('$TMUX')   " Hide tmux bar
+    silent !tmux set status off
+  endif
+  let &l:statusline = '%M' " Show modified state on the bottom of the screen
+                           " This automatically disables on Goyo leave
+  hi StatusLine
+        \ ctermfg=137
+        \ guifg=#be9873
+        \ cterm=NONE
+        \ gui=NONE
+endfunction
+
+function! s:goyo_leave() " On goyo exit:
+  set showcmd            " Show last command
+  set showmode           " Show current mode
+  set scrolloff=1        " Always show one line of context around the cursor
+  if has('gui_running')
+    set nofullscreen     " Exit fullscreen
+    colo seoul8          " Dark colours
+    set linespace=3      " Standard leading
+  elseif exists('$TMUX') " Enable tmux bar
+    silent !tmux set status on
+  endif
+endfunction
+
+" Activate respective function on goyo enter and leave
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+let g:ycm_global_ycm_extra_conf = '.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+

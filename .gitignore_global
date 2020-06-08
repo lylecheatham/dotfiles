@@ -2,3 +2,6 @@
 .DS_Store
 *.swp
 .python-version
+client/tools/__pycache__
+server/venv
+server/.idea
