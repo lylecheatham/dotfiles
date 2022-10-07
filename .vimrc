@@ -68,6 +68,7 @@ nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 " Make :wq and :q do buffer deletes instead of quit
 " Use :wqa and :qa to exit vim!
 :cnoreabbrev wq w<bar>bd
+:cnoreabbrev wq! w!<bar>bd
 :cnoreabbrev q bd
 
 " Make vim-table-mode make pandoc compatible tables

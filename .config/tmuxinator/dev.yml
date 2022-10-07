@@ -55,10 +55,10 @@ windows:
       layout: main-horizontal
       panes:
         - htop
-        -
-  - Music:
-      layout: main-horizontal
-      panes:
-        - vs
-        - "cd Music && /Applications/SMLoadr-macos-x64"
-        - cd Music
+        - win ~/Documents/workspace/slicer && tmux send-keys -t "dev:3.1" "tmux split-window -h -p 20" Enter
+  # - Music:
+  #     layout: main-horizontal
+  #     panes:
+  #       - vs
+  #       - "cd Music && /Applications/SMLoadr-macos-x64"
+  #       - cd Music

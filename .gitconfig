@@ -2,15 +2,15 @@
 	name = LyleCheatham
 	email = hello@lylecheatham.com
 [core]
-	excludesfile = /Users/lyle/.gitignore_global
+	excludesfile = /Users/work/.gitignore_global
     editor = /usr/local/bin/nvim
-	excudesfile = `~/.gitignore_global`
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Users/Lyle/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+[merge]
+  tool = meld
+[mergetool]
+  prompt = false
+[mergetool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args --auto-merge \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output=\"$MERGED\"
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
@@ -20,3 +20,20 @@
     #template = /Users/lyle/.stCommitMsg
 [credential]
 	helper = osxkeychain
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+	fpush = push --no-verify
+	pushf = push --no-verify
+    bdiff = "!f() { \
+        git diff $(git merge-base --fork-point $1) $1; \
+      }; f"
+    quick-deploy = "!git commit -m \"quick deploy please yell at me if I don't rebase these later\"; git push && :"
+	pushn = push -u origin HEAD
+    wip = commit -m WIP --no-verify
+	uwip = "!f(){ if [[ $(git log -n 1 --pretty=format:%s HEAD) == 'WIP' ]]; then git reset --soft HEAD^; else echo 'cannot use git uwip to undo a non WIP commit'; fi; }; f"
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 

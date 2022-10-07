@@ -1,0 +1,28 @@
+pane	0	1	:fish	1	:*	0	:/Users/work	0	fish	:-fish
+pane	0	1	:fish	1	:*	1	:/Users/work	1	fish	:-fish
+pane	2	1	:fish	1	:*	0	:/Users/work	1	fish	:-fish
+pane	4	1	:fish	1	:*	0	:/Users/work	1	fish	:-fish
+pane	dev	1	:sys	0	:-	0	:/Users/work	0	nvim	:-fish
+pane	dev	1	:sys	0	:-	1	:/Users/work	1	fish	:-fish
+pane	dev	2	:status	1	:*	0	:/Users/work	1	htop	:-fish
+pane	dev	2	:status	1	:*	1	:/Users/work	0	fish	:-fish
+pane	dev	3	:slicer	0	:	0	:/Users/work/Documents/Workspace/slicer	1	fish	:-fish
+pane	dev	3	:slicer	0	:	1	:/Users/work/Documents/Workspace/slicer	0	fish	:-fish
+pane	dev	3	:slicer	0	:	2	:/Users/work/Documents/Workspace/slicer	0	fish	:-fish
+pane	dev	4	:controls	0	:	0	:/Users/work/Documents/Workspace/controls	1	fish	:-fish
+pane	dev	4	:controls	0	:	1	:/Users/work/Documents/Workspace/controls	0	fish	:-fish
+pane	dev	5	:Slicing	0	:	0	:/Users/work/Documents/Slicing	1	fish	:-fish
+pane	dev	5	:Slicing	0	:	1	:/Users/work/Documents/Slicing	0	fish	:-fish
+pane	dev	6	:logging	0	:	0	:/Users/work/Documents/logging	0	fish	:-fish
+pane	dev	6	:logging	0	:	1	:/Users/work/Documents/logging	0	fish	:-fish
+pane	dev	6	:logging	0	:	2	:/Users/work/Documents/logging	1	fish	:-fish
+window	0	1	1	:*	7b2b,254x73,0,0[254x36,0,0,1,254x36,0,37,2]
+window	2	1	1	:*	6026,254x73,0,0,17
+window	4	1	1	:*	6022,254x73,0,0,32
+window	dev	1	0	:-	f40e,254x73,0,0[254x43,0,0,33,254x29,0,44,34]
+window	dev	2	1	:*	d511,254x73,0,0[254x51,0,0,35,254x21,0,52,36]
+window	dev	3	0	:	1e1b,254x73,0,0[254x37,0,0,37,254x35,0,38{208x35,0,38,38,45x35,209,38,39}]
+window	dev	4	0	:	714b,254x73,0,0[254x37,0,0,40,254x35,0,38,41]
+window	dev	5	0	:	714e,254x73,0,0[254x37,0,0,42,254x35,0,38,43]
+window	dev	6	0	:	3668,254x73,0,0[254x37,0,0,44,254x35,0,38{127x35,0,38,45,126x35,128,38,46}]
+state	dev	0

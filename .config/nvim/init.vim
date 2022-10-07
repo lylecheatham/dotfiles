@@ -4,7 +4,7 @@ set shell=/bin/bash
 let g:python3_host_prog = '/Users/Lyle/.pyenv/versions/neovim3/bin/python'
 
 call plug#begin()
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'git://git.wincent.com/command-t.git'
 Plug 'flazz/vim-colorschemes'

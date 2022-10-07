@@ -38,27 +38,103 @@ set fish_pager_color_secondary F8F8F2 # the background color of the every second
 
 function fish_prompt
     set_color $fish_color_cwd
-    printf $PWD
+    # Don't printf the first slash of the path because we use it to show prompt mode
+    printf (string sub --start 2 $PWD)
     printf '>'
+    set_color normal
 end
 
+function fish_mode_prompt
+    # This function just highlights the first forward slash of the path to show mode
+    set_color $fish_color_cwd
+    switch $fish_bind_mode
+        case default
+            set_color --background red white
+            echo '/'
+        case insert
+            echo '/'
+        case replace_one
+            set_color --background yellow white
+            echo '/'
+        case visual
+            set_color --background brmagenta white
+            echo '/'
+        case '*'
+            set_color --background red white
+            echo '?'
+        end
+    set_color normal
+end
+
+# For macports
+set PATH "/opt/local/bin:/opt/local/sbin:$PATH"
+set MANPATH "/opt/local/share/man:$MANPATH"
+
+# I don't know where this came from tbh
+set PATH "$PATH:/usr/local/sbin"
+
+# Go stuff
+export GOPATH=$HOME/go
+export GOROOT="/usr/local/opt/go/libexec"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+
+# openocd
+export OPENOCD="$HOME/Documents/Workspace/openocd"
+
+# MacPorts
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export MANPATH="/opt/local/share/man:$MANPATH"
+
+# Cargo tools
+set PATH "$HOME/.cargo/bin:$PATH"
+
+# set the default shell
 set SHELL /usr/local/bin/fish
+
+# Default editor
 set EDITOR /usr/local/bin/nvim
+
+# Pyenv root
 set PYENV_ROOT $HOME/.pyenv
 
+# gclib
+export DYLD_LIBRARY_PATH="/Applications/gclib/dylib/:$DYLD_LIBRARY_PATH"
 
-status --is-interactive; and source (pyenv init -|psub)
-status --is-interactive; and . (pyenv virtualenv-init -|psub)
+# Init Pyenv
+status is-login; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
+status --is-interactive; and pyenv virtualenv-init - | source
 
+# serial aliases
 alias serial='pio device monitor -b 115200 --echo --eol LF'
 alias pserial='pio device monitor -b 115200 --eol LF'
+
+# eject a volume
 alias ejsd='diskutil unmount'
+
+# I hate ls
+alias la='ls -lah'
 alias lat='ls -lahtr'
+
+# config command for managing dotfiles
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# run matlab
 alias matlab='/Applications/MATLAB_R2017a.app/bin/matlab -nodisplay'
 alias matlab2020='/Applications/MATLAB_R2020a.app/bin/matlab -nodesktop'
+
+# shouldn't need these anymore
 alias gitlogin='ssh-add -K ~/.ssh/id_rsa_personal'
 alias usb_work="sudo killall -STOP -c usbd"
 alias usb_resume="sudo killall -CONT usbd"
+
+# MacTex
+set PATH "/Library/TeX/texbin:$PATH"
+set MANPATH "/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH"
+
+# Git work in progress commands
+alias gwip='git wip'
+alias guwip='git uwip'
 
 function v
     if set -q TMUX
@@ -68,8 +144,14 @@ function v
     end
 end
 
+alias vim="v"
+
 function vs
-    if set -q TMUX
+    if set -q argv; and set -q argv[1]
+        echo "got an argv"
+        rm /tmp/nvr_"$USER"_"$argv"
+        nvr -s --servername /tmp/nvr_"$USER"_"$argv"
+    else if set -q TMUX
         rm /tmp/nvr_"$USER"_(tmux display-message -p '#I')
         nvr -s --servername /tmp/nvr_"$USER"_(tmux display-message -p '#I')
     else
@@ -115,6 +197,11 @@ function pdf
     pandoc $argv -o (dirname $argv[1])/(basename $argv[1] .md).pdf; and open (dirname $argv[1])/(basename $argv[1] .md).pdf;
 end
 
+function pdft
+    pandoc $argv -s -o (dirname $argv[1])/(basename $argv[1] .md).tex; and v (dirname $argv[1])/(basename $argv[1] .md).tex;
+
+end
+
 function pdfw
     pandoc -Vmargin-left=0.75in -Vmargin-right=0.75in -Vmargin-top=1in -Vmargin-bottom=1in $argv -o (dirname $argv[1])/(basename $argv[1] .md).pdf; and open (dirname $argv[1])/(basename $argv[1] .md).pdf;
 end
@@ -123,4 +210,9 @@ function cpscreen
     cp ~/Screenshots/(ls -tp ~/Screenshots | grep -v \/\$ | head -1) .;
 end
 
-rvm default
+# rvm default
+
+export CLOUDSDK_PYTHON=/Users/work/.pyenv/versions/gcloud/bin/python
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/work/.google-cloud-sdk/path.fish.inc' ]; . '/Users/work/.google-cloud-sdk/path.fish.inc'; end

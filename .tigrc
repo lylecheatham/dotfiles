@@ -70,7 +70,10 @@ bind generic um status-merge
 bind generic ul stage-update-line
 bind generic us stage-split-chunk
 
+bind generic y none
 bind generic c  none
+bind main C @git checkout %(commit)
+bind main yy @sh -c "printf '%(commit)' | pbcopy"
 bind generic cc !git commit
 bind generic ca !?@git commit --amend --no-edit
 
